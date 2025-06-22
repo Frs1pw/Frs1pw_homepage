@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beachside Pixel</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            /* 背景色はお好みで */
+            overflow: hidden;
+            /* 画像がはみ出さないように */
+        }
+
+        #overlay-image {
+            position: absolute;
+            max-width: 90%;
+            /* 画面幅に合わせて調整 */
+            max-height: 90%;
+            /* 画面高さに合わせて調整 */
+            opacity: 0;
+            /* 初期状態では非表示 */
+            transition: opacity 0.5s ease-in-out;
+            /* フェードイン・アウトのアニメーション */
+            pointer-events: none;
+            /* 画像下の要素をクリックできるように */
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="overlay-image" src="GrUAm2tbAAAX9h_.jpg" alt="拡大画像">
+
+    <script>
+        const overlayImage = document.getElementById('overlay-image');
+        let fadeOutTimer;
+
+        // 画像のURLを設定（お好きな画像に差し替えてください）
+        // 例: overlayImage.src = "path/to/your/image.png";
+        // または、base64エンコードされた画像データなど
+        // 現在はプレースホルダー画像を使用しています。
+
+        document.addEventListener('keydown', (event) => {
+            // ここで拡大表示させたいキーを設定します。
+            // 例: スペースキー (event.code === 'Space')
+            // 例: 'A'キー (event.key === 'a' || event.key === 'A')
+            // 詳細はMDNの KeyboardEvent.code や KeyboardEvent.key を参照してください。
+            if (event.code === 'Space') { // 例としてスペースキーを使用
+                clearTimeout(fadeOutTimer); // 既存のタイマーをクリア
+
+                // 画像をフェードイン
+                overlayImage.style.opacity = '1';
+
+                // 2秒後にフェードアウトを開始（調整可能）
+                fadeOutTimer = setTimeout(() => {
+                    overlayImage.style.opacity = '0';
+                }, 2000); // 2000ミリ秒 = 2秒
+            }
+        });
+    </script>
+</body>
+
+</html>
